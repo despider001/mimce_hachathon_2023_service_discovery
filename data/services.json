@@ -1,0 +1,175 @@
+{
+    "identity": {
+        "origin": "192.168.1.143",
+        "port": "8080",
+        "suffix": "identity",
+        "endpoints": [
+            {
+                "login": {
+                    "suffix": "login",
+                    "method":"post",
+                    "data": {
+                        "input": {
+                            "username": "string",
+                            "password": "string"
+                        },
+                        "output": {
+                            "data": "string",
+                            "message": "string",
+                            "isSuccess": "boolean"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "products": {
+        "origin": "192.168.1.143",
+        "port": "8080",
+        "suffix": "products",
+        "endpoints": [
+            {
+                "suffix": "/",
+                "methodName": "getAllProducts",
+                "method": "get",
+                "data": {
+                    "input": null,
+                    "output": {
+                        "data": "product[]",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            },
+            {
+                "suffix": "/categories",
+                "methodName": "getAllCategories",
+                "method": "get",
+                "data": {
+                    "input": null,
+                    "output": {
+                        "data": "category[]",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            },
+            {
+                "suffix": "/",
+                "methodName": "getProducts",
+                "method": "post",
+                "data": {
+                    "input": {
+                        "ids": "string[]"
+                    },
+                    "output": {
+                        "data": "product[]",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            }
+        ]
+    },
+    "basket": {
+        "origin": "192.168.1.143",
+        "port": "8080",
+        "suffix": "basket",
+        "endpoints": [
+            {
+                "suffix": "/",
+                "methodName": "addProducts",
+                "method": "put",
+                "data": {
+                    "input": {
+                        "product_id": "product.id",
+                        "user_id": "user.id",
+                        "quantity": "number"
+                    },
+                    "output": {
+                        "data": "string",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            },
+            {
+                "suffix": "/",
+                "methodName": "removeProducts",
+                "method": "post",
+                "data": {
+                    "input": {
+                        "product_id": "product.id",
+                        "user_id": "user.id",
+                        "quantity": "number"
+                    },
+                    "output": {
+                        "data": "string",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            }
+        ]
+    },
+    "order": {
+        "origin": "192.168.1.143",
+        "port": "8080",
+        "suffix": "order",
+        "endpoints": [
+            {
+                "suffix": "/",
+                "methodName": "createOrder",
+                "method": "post",
+                "data": {
+                    "input": {
+                        "user_id": "user.id",
+                        "address": "string",
+                        "products": [
+                            {
+                                "product_id": "product.id",
+                                "quantity": "number"
+                            }
+                        ]
+                    },
+                    "output": {
+                        "data": "string",
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            },
+            {
+                "suffix": "/",
+                "methodName": "getAllOrders",
+                "method": "post",
+                "data": {
+                    "input": {
+                        "user_id": "user.id"
+                    },
+                    "output": {
+                        "data": [
+                            {
+                                "order_id": "order.id",
+                                "user_id": "user.id",
+                                "createdAt": "date",
+                                "address": "string",
+                                "products": [
+                                    {
+                                        "product_name": "string",
+                                        "imageUrl": "string",
+                                        "quantity": "number",
+                                        "price": "number",
+                                        "currency": "string"
+                                    }
+                                ]
+                            }
+                        ],
+                        "message": "string",
+                        "isSuccess": "boolean"
+                    }
+                }
+            }
+        ]
+    }
+}
